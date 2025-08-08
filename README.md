@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Math with Afzali</title>
+<style>
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+margin: 0;
+padding: 0;
+background-color: #f4f4f4;
+color: #333;
+line-height: 1.6;
+height: 100%; /* For scrollability */
+overflow-y: auto; /* Enable vertical scrolling */
+}
+.container {
+width: 90%;
+max-width: 800px;
+margin: 20px auto;
+background: #fff;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+header {
+background: #4CAF50;
+color: white;
+padding: 1em 0;
+text-align: center;
+border-radius: 8px 8px 0 0;
+}
+nav {
+background: #333;
+color: white;
+padding: 0.5em 0;
+text-align: center;
+border-radius: 0 0 8px 8px;
+}
+nav a {
+color: white;
+padding: 10px 15px;
+text-decoration: none;
+display: inline-block;
+transition: background-color 0.3s ease;
+}
+nav a:hover {
+background-color: #575757;
+}
+section {
+display: none; /* Hide all sections by default */
+padding: 20px 0;
+border-top: 1px solid #eee;
+}
+section:first-of-type {
+border-top: none;
+}
+h2 {
+color: #4CAF50;
+text-align: center;
+margin-bottom: 20px;
+}
+.form-group {
+margin-bottom: 15px;
+}
+.form-group label {
+display: block;
+margin-bottom: 5px;
+font-weight: bold;
+}
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="email"],
+.form-group textarea {
+width: calc(100% - 22px);
+padding: 10px;
+border: 1px solid #ddd;
+border-radius: 4px;
+}
+.form-group button {
+background-color: #4CAF50;
+color: white;
+padding: 10px 20px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+font-size: 16px;
+transition: background-color 0.3s ease;
+}
+.form-group button:hover {
+background-color: #45a049;
+}
+.message {
+margin-top: 10px;
+padding: 10px;
+border-radius: 4px;
+background-color: #e0ffe0;
+color: #4CAF50;
+text-align: center;
+}
+.video-wrapper {
+position: relative;
+padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+height: 0;
+overflow: hidden;
+margin-bottom: 20px;
+background-color: #000;
+}
+.video-wrapper iframe {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+border: 0;
+}
+.exam-item {
+margin-bottom: 15px;
+padding: 10px;
+border: 1px solid #eee;
+border-radius: 4px;
+background-color: #f9f9f9;
+}
+.exam-item a {
+color: #4CAF50;
+text-decoration: none;
+}
+.exam-item img {
+max-width: 100%;
+height: auto;
+display: block;
+margin-top: 10px;
+border-radius: 4px;
+}
+footer {
+text-align: center;
+padding: 20px;
+background: #333;
+color: white;
+margin-top: 20px;
+border-radius: 0 0 8px 8px;
+}
+footer a {
+color: #4CAF50;
+text-decoration: none;
+}
+.geogebra-embed {
+width: 100%;
+height: 500px;
+border: 1px solid #ddd;
+border-radius: 8px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<h1>Math with Afzali</h1>
+</header>
+<nav>
+<a href="#" onclick="showSection('home-section')">صفحه اصلی</a>
+<a href="#" onclick="showSection('register-section')">ثبت نام</a>
+<a href="#" onclick="showSection('login-section')">ورود به پنل کاربری</a>
+<a href="#" onclick="showSection('admin-login-section')">ورود مدیر</a>
+<a href="#" onclick="showSection('videos-section')">ویدیوها</a>
+<a href="#" onclick="showSection('exams-section')">امتحانات و نمونه سوالات</a>
+<a href="#" onclick="showSection('qna-section')">پرسش و پاسخ</a>
+<a href="#" onclick="showSection('survey-section')">نظرسنجی</a>
+<a href="#" onclick="showSection('geogebra-section')">GeoGebra</a>
+<a href="#" onclick="showSection('create-exam-section')" id="createExamNavLink" style="display:none;">ساخت آزمون (مدیر)</a>
+</nav>
+
+<section id="home-section" style="display:block;">
+<h2>به سایت Math with Afzali خوش آمدید!</h2>
+<p>این سایت محلی برای یادگیری ریاضیات است. ما منابع آموزشی متنوعی شامل ویدیوها، نمونه سوالات و ابزارهای تعاملی را برای شما فراهم کرده‌ایم.</p>
+<p>مدیر سایت: امیرمحمد افضلی</p>
+</section>
+
+<section id="register-section">
+<h2>ثبت نام</h2>
+<form onsubmit="handleRegister(event)">
+<div class="form-group">
+<label for="reg-username">نام کاربری:</label>
+<input type="text" id="reg-username" required>
+</div>
+<div class="form-group">
+<label for="reg-password">رمز عبور:</label>
+<input type="password" id="reg-password" required>
+</div>
+<div class="form-group">
+<button type="submit">ثبت نام</button>
+</div>
+<div id="register-message" class="message" style="display:none;"></div>
+</form>
+</section>
+
+<section id="login-section">
+<h2>ورود به پنل کاربری</h2>
+<form onsubmit="handleLogin(event)">
+<div class="form-group">
+<label for="login-username">نام کاربری:</label>
+<input type="text" id="login-username" required>
+</div>
+<div class="form-group">
+<label for="login-password">رمز عبور:</label>
+<input type="password" id="login-password" required>
+</div>
+<div class="form-group">
+<button type="submit">ورود</button>
+</div>
+<div id="login-message" class="message" style="display:none;"></div>
+</form>
+</section>
+
+<section id="admin-login-section">
+<h2>ورود مدیر</h2>
+<form onsubmit="handleAdminLogin(event)">
+<div class="form-group">
+<label for="admin-username">نام کاربری:</label>
+<input type="text" id="admin-username" required>
+</div>
+<div class="form-group">
+<label for="admin-password">رمز عبور:</label>
+<input type="password" id="admin-password" required>
+</div>
+<div class="form-group">
+<button type="submit">ورود مدیر</button>
+</div>
+<div id="admin-message" class="message" style="display:none;"></div>
+</form>
+</section>
+
+<section id="videos-section">
+<h2>ویدیوهای آموزشی</h2>
+<p>در این قسمت می‌توانید ویدیوهای آموزشی ریاضی را مشاهده و بارگذاری کنید.</p>
+
+<h3>بارگذاری ویدیو</h3>
+<div class="form-group">
+<label for="video-upload-input">انتخاب فایل ویدیو:</label>
+<input type="file" id="video-upload-input" accept="video/*" onchange="simulateVideoUpload()">
+</div>
+<div id="video-upload-message" class="message" style="display:none;"></div>
+
+<h3>ویدیوهای بارگذاری شده</h3>
+<div class="video-wrapper">
+<iframe src="https://www.aparat.com/video/video/embed/videohash/d12zz64/vt/frame" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+</div>
+<div class="video-wrapper">
+<iframe src="https://www.aparat.com/video/video/embed/videohash/nst5qy3/vt/frame" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+</div>
+<p>ویدیوی توضیح ریاضی هشتم (مثال ۱):</p>
+<div class="video-wrapper">
+<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<p>ویدیوی توضیح ریاضی هشتم (مثال ۲):</p>
+<div class="video-wrapper">
+<iframe src="https://www.youtube.com/embed/o-YV9X2a53E" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<p>ویدیوی توضیح ریاضی هشتم (مثال ۳):</p>
+<div class="video-wrapper">
+<iframe src="https://www.youtube.com/embed/kR7fP3T15-U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+</section>
+
+<section id="exams-section">
+<h2>امتحانات و نمونه سوالات</h2>
+<p>در این بخش می‌توانید به نمونه سوالات امتحانی، آزمون‌های آزمایشی و منابع مفید دسترسی پیدا کنید.</p>
+
+<h3>نمونه سوالات قلم چی</h3>
+<div class="exam-item">
+<p><a href="#">لینک به نمونه سوالات آزمون قلم چی (مثال ۱)</a></p>
+</div>
+<div class="exam-item">
+<p><a href="#">لینک به نمونه سوالات آزمون قلم چی (مثال ۲)</a></p>
+</div>
+
+<h3>سوالات امتحانی و نمونه سوال هشتم (PDF)</h3>
+<div class="exam-item">
+<p><a href="#">نمونه سوال ریاضی هشتم - فصل اول (PDF)</a></p>
+</div>
+<div class="exam-item">
+<p><a href="#">نمونه سوال ریاضی هشتم - فصل دوم (PDF)</a></p>
+</div>
+<div class="exam-item">
+<p><a href="#">نمونه سوال ریاضی هشتم - فصل سوم (PDF)</a></p>
+</div>
+<div class="exam-item">
+<p><a href="#">نمونه سوال ریاضی هشتم - فصل چهارم (PDF)</a></p>
+</div>
+<div class="exam-item">
+<p><a href="#">نمونه سوال ریاضی هشتم - فصل پنجم (PDF)</a></p>
+</div>
+<div class="exam-item">
+<p><a href="#">نمونه سوال ریاضی هشتم - فصل ششم (PDF)</a></p>
+</div>
+<div class="exam-item">
+<p><a href="#">نمونه سوال ریاضی هشتم - فصل هفتم (PDF)</a></p>
+</div>
+<div class="exam-item">
+<p><a href="#">نمونه سوال ریاضی هشتم - فصل هشتم (PDF)</a></p>
+</div>
+<div class="exam-item">
+<p><a href="#">نمونه سوال ریاضی هشتم - میان ترم اول (PDF)</a></p>
+</div>
+<div class="exam-item">
+<p><a href="#">نمونه سوال ریاضی هشتم - نوبت دوم (PDF)</a></p>
+</div>
+
+<h3>تصویر مرتبط</h3>
+<div class="exam-item">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCzU_Vj0aKZVqOvSL0V1l1X7pBe4SjIVSjOA&s" alt="نمونه سوال ریاضی">
+</div>
+</section>
+
+<section id="qna-section">
+<h2>پرسش و پاسخ</h2>
+<p>سوالات خود را در اینجا مطرح کنید یا به سوالات دیگران پاسخ دهید.</p>
+<div class="form-group">
+<label for="qna-question">سوال شما:</label>
+<textarea id="qna-question" rows="5" placeholder="سوال خود را اینجا بنویسید..."></textarea>
+</div>
+<div class="form-group">
+<button onclick="submitQuestion()">ارسال سوال</button>
+</div>
+<div id="qna-message" class="message" style="display:none;"></div>
+<h3>سوالات اخیر:</h3>
+<p>سوال ۱: چگونه می‌توانم معادلات درجه دوم را حل کنم؟</p>
+<p>پاسخ: برای حل معادلات درجه دوم می‌توانید از روش دلتا یا فاکتورگیری استفاده کنید.</p>
+<p>سوال ۲: مفهوم تابع در ریاضیات چیست؟</p>
+<p>پاسخ: تابع یک رابطه بین مجموعه‌ای از ورودی‌ها و مجموعه‌ای از خروجی‌ها است که هر ورودی دقیقاً یک خروجی دارد.</p>
+</section>
+
+<section id="survey-section">
+<h2>نظرسنجی</h2>
+<p>لطفاً با شرکت در نظرسنجی، ما را در بهبود کیفیت سایت یاری کنید.</p>
+<form onsubmit="submitSurvey(event)">
+<div class="form-group">
+<label for="survey-quality">کیفیت محتوای سایت چگونه است؟</label>
+<select id="survey-quality" required>
+<option value="">انتخاب کنید</option>
+<option value="عالی">عالی</option>
+<option value="خوب">خوب</option>
+<option value="متوسط">متوسط</option>
+<option value="ضعیف">ضعیف</option>
+</select>
+</div>
+<div class="form-group">
+<label for="survey-suggestions">پیشنهادات شما برای بهبود:</label>
+<textarea id="survey-suggestions" rows="4"></textarea>
+</div>
+<div class="form-group">
+<button type="submit">ارسال نظرسنجی</button>
+</div>
+<div id="survey-message" class="message" style="display:none;"></div>
+</form>
+</section>
+
+<section id="geogebra-section">
+<h2>GeoGebra</h2>
+<p>در این قسمت می‌توانید با ابزار قدرتمند GeoGebra به صورت تعاملی با مفاهیم ریاضی کار کنید. GeoGebra یک نرم‌افزار پویا و چندمنظوره برای یادگیری و تدریس ریاضیات است. این برنامه هندسه، جبر، آمار و حسابان را در یک بسته واحد ترکیب می‌کند.</p>
+<p>با استفاده از GeoGebra می‌توانید نمودارهای توابع را رسم کنید، اشکال هندسی بسازید و تغییر دهید، تبدیلات هندسی را مشاهده کنید، محاسبات جبری و آماری انجام دهید و مفاهیم ریاضی را به صورت بصری و تعاملی کاوش کنید. کافیست با ابزارهای موجود در نوار ابزار بالا کار کنید و نمودارها یا اشکال مورد نظر خود را رسم نمایید.</p>
+<iframe src="https://www.geogebra.org/classic" class="geogebra-embed" allowfullscreen></iframe>
+</section>
+
+<section id="create-exam-section">
+<h2>ساخت آزمون (فقط برای مدیر)</h2>
+<p>این بخش به مدیر سایت امکان می‌دهد تا آزمون‌های جدیدی را ایجاد کند.</p>
+<form onsubmit="createExam(event)">
+<div class="form-group">
+<label for="exam-title">عنوان آزمون:</label>
+<input type="text" id="exam-title" required>
+</div>
+<div class="form-group">
+<label for="exam-description">توضیحات آزمون:</label>
+<textarea id="exam-description" rows="5"></textarea>
+</div>
+<div class="form-group">
+<label for="exam-questions">سوالات آزمون (هر سوال در یک خط):</label>
+<textarea id="exam-questions" rows="10" placeholder="سوال ۱&#10;سوال ۲&#10;..."></textarea>
+</div>
+<div class="form-group">
+<button type="submit">ایجاد آزمون</button>
+</div>
+<div id="create-exam-message" class="message" style="display:none;"></div>
+</form>
+</section>
+
+<footer>
+<p>تماس با ما: <a href="mailto:a95595160@gmail.com">a95595160@gmail.com</a></p>
+<p>&copy; 2023 Math with Afzali. تمامی حقوق محفوظ است.</p>
+</footer>
+</div>
+
+<script>
+// Function to show/hide sections
+function showSection(sectionId) {
+const sections = document.querySelectorAll('section');
+sections.forEach(section => {
+section.style.display = 'none';
+});
+document.getElementById(sectionId).style.display = 'block';
+}
+
+// Fake Registration
+function handleRegister(event) {
+event.preventDefault();
+const username = document.getElementById('reg-username').value;
+const messageDiv = document.getElementById('register-message');
+messageDiv.textContent = `کاربر ${username} با موفقیت ثبت نام شد.`;
+messageDiv.style.display = 'block';
+setTimeout(() => { messageDiv.style.display = 'none'; }, 3000);
+document.getElementById('reg-username').value = '';
+document.getElementById('reg-password').value = '';
+}
+
+// Fake User Login
+function handleLogin(event) {
+event.preventDefault();
+const username = document.getElementById('login-username').value;
+const messageDiv = document.getElementById('login-message');
+// In a real app, you'd check credentials here
+messageDiv.textContent = `ورود کاربر ${username} موفقیت آمیز بود.`;
+messageDiv.style.display = 'block';
+setTimeout(() => { messageDiv.style.display = 'none'; }, 3000);
+document.getElementById('login-username').value = '';
+document.getElementById('login-password').value = '';
+}
+
+// Fake Admin Login
+function handleAdminLogin(event) {
+event.preventDefault();
+const username = document.getElementById('admin-username').value;
+const password = document.getElementById('admin-password').value;
+const messageDiv = document.getElementById('admin-message');
+const createExamNavLink = document.getElementById('createExamNavLink');
+
+if (username === 'Amir9657' && password === '12345') { // Updated password here
+messageDiv.textContent = 'ورود مدیر امیرمحمد افضلی موفقیت آمیز بود.';
+messageDiv.style.backgroundColor = '#e0ffe0';
+messageDiv.style.color = '#4CAF50';
+createExamNavLink.style.display = 'inline-block'; // Show create exam link for admin
+} else {
+messageDiv.textContent = 'نام کاربری یا رمز عبور مدیر اشتباه است.';
+messageDiv.style.backgroundColor = '#ffe0e0';
+messageDiv.style.color = '#f44336';
+createExamNavLink.style.display = 'none';
+}
+messageDiv.style.display = 'block';
+setTimeout(() => { messageDiv.style.display = 'none'; }, 3000);
+document.getElementById('admin-username').value = '';
+document.getElementById('admin-password').value = '';
+}
+
+// Simulate Video Upload
+function simulateVideoUpload() {
+const fileInput = document.getElementById('video-upload-input');
+const messageDiv = document.getElementById('video-upload-message');
+if (fileInput.files.length > 0) {
+const fileName = fileInput.files[0].name;
+messageDiv.textContent = `فایل ویدیویی "${fileName}" با موفقیت بارگذاری شد.`;
+messageDiv.style.display = 'block';
+} else {
+messageDiv.textContent = 'لطفاً یک فایل ویدیو انتخاب کنید.';
+messageDiv.style.display = 'block';
+}
+setTimeout(() => { messageDiv.style.display = 'none'; }, 3000);
+}
+
+// Simulate Survey Submission
+function submitSurvey(event) {
+event.preventDefault();
+const quality = document.getElementById('survey-quality').value;
+const suggestions = document.getElementById('survey-suggestions').value;
+const messageDiv = document.getElementById('survey-message');
+messageDiv.textContent = 'نظر شما با موفقیت ثبت شد. از همکاری شما سپاسگزاریم!';
+messageDiv.style.display = 'block';
+setTimeout(() => { messageDiv.style.display = 'none'; }, 3000);
+document.getElementById('survey-quality').value = '';
+document.getElementById('survey-suggestions').value = '';
+}
+
+// Simulate Question Submission
+function submitQuestion() {
+const question = document.getElementById('qna-question').value;
+const messageDiv = document.getElementById('qna-message');
+if (question.trim() !== '') {
+messageDiv.textContent = 'سوال شما با موفقیت ارسال شد و به زودی پاسخ داده خواهد شد.';
+messageDiv.style.display = 'block';
+setTimeout(() => { messageDiv.style.display = 'none'; }, 3000);
+document.getElementById('qna-question').value = '';
+} else {
+messageDiv.textContent = 'لطفاً سوال خود را وارد کنید.';
+messageDiv.style.display = 'block';
+setTimeout(() => { messageDiv.style.display = 'none'; }, 3000);
+}
+}
+
+// Simulate Create Exam for Admin
+function createExam(event) {
+event.preventDefault();
+const title = document.getElementById('exam-title').value;
+const messageDiv = document.getElementById('create-exam-message');
+messageDiv.textContent = `آزمون "${title}" با موفقیت ایجاد شد.`;
+messageDiv.style.display = 'block';
+setTimeout(() => { messageDiv.style.display = 'none'; }, 3000);
+document.getElementById('exam-title').value = '';
+document.getElementById('exam-description').value = '';
+document.getElementById('exam-questions').value = '';
+}
+
+// Initial display
+document.addEventListener('DOMContentLoaded', () => {
+showSection('home-section');
+});
+</script>
+</body>
+</html>
